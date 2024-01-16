@@ -1,3 +1,4 @@
+"""Модуль бібліотек для роботи"""
 from datetime import date, datetime
 
 days_name = {
@@ -10,13 +11,14 @@ days_name = {
         6: "Monday",
     }
 
+def name_users_birthday(name):
+    """Розділення ім'я та прізвища """
+    resultat = name.split()
+    return resultat[0]
 
+def get_birthdays_per_week(list_users):
+    """Виконання основної частини коду"""
 
-def name_users_birthday(name): # Розділення ім'я та прізвища 
-    result = name.split()
-    return result[0]
-
-def get_birthdays_per_week(users):
     birthdays = {
         "Monday":[],
         "Tuesday":[],
@@ -26,13 +28,13 @@ def get_birthdays_per_week(users):
         "Saturday":[],
         "Sunday":[],
     }
-    if len(users) == 0:    
+
+    if len(list_users) == 0:
         return {}
-    
     birthday_users = {}
     current_day = date.today()
 
-    for i in users:
+    for i in list_users:
         new_birthday_date = i["birthday"]
         if new_birthday_date.year != current_day.year:
             year = current_day.year
@@ -74,7 +76,8 @@ if __name__ == "__main__":
 
     result = get_birthdays_per_week(users)
     print(result)
-    
+
     # Виводимо результат
     for day_name, names in result.items():
         print(f"{day_name}: {', '.join(names)}")
+    # End-of-file (EOF)
